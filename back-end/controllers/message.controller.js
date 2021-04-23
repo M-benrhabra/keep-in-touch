@@ -51,4 +51,39 @@ exports.postresponse = async (req, res) => {
       console.log('Email sent: ' + info.response);
     }
   });
-}
+};
+
+exports.MessageDate = async (req, res) => {
+
+  // try {
+  //   const { dateValue } = req.body
+
+  //   const fillterMessage = await Message.find({'symbol':indexSymbol, 'timestamp': {$lte: dateValue.toISOString()} }) 
+
+  //   res.status(200).json(fillterMessage)
+  // } catch (error) {
+  //   res.status(400).json({message : error.message})
+  // }
+
+  Message.aggregate([
+    {
+      $addFields: {
+        "dateString": { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } }
+      }
+    },
+    {
+      $match: {
+        dateString: {
+          $eq: req.body.dateValue
+        }
+      }
+    }
+  ]).exec((err, records) => {
+    if (err) throw err;
+    // console.log(records);
+    res.json(records)
+  })
+
+
+
+} 

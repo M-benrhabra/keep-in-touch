@@ -8,5 +8,7 @@ router.post('/addMessage', messageController.postmessage);
 
 router.post('/sendresponse', messageController.postresponse);
 
+router.post('/messageDate', messageController.MessageDate);
+
 
 module.exports = router; 
