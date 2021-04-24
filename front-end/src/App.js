@@ -18,7 +18,7 @@ function App() {
           <Switch>
             <Route exact path= '/contact' component={Contact} />
             <Route path='/dashboard' component={Dashbord} />
-            <Route path='/response' component={Response} />
+            <Route path='/response/:id' component={Response} />
           </Switch>
         </div>
       </div>

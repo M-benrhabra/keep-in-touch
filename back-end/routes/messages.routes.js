@@ -6,9 +6,11 @@ router.get('/getMessage', messageController.getmessage);
 
 router.post('/addMessage', messageController.postmessage);
 
-router.post('/sendresponse', messageController.postresponse);
+router.post('/sendresponse/:id', messageController.postresponse);
 
-router.post('/messageDate', messageController.MessageDate);
+router.post('/searchMessage', messageController.searchMessage);
+
+router.get('/userInfos/:id', messageController.getInfos )
 
 
 module.exports = router; 

@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import axios from 'axios'
 import { FaMapMarkedAlt,FaPhoneAlt, FaMailBulk } from 'react-icons/fa';
 
-const initialState ={ username: '', email: '', phone: '', message: '' };
+
 
 const Contact = () => {
+    const initialState ={ username: '', email: '', phone: '', message: '' };
     const [form, setForm] = useState(initialState);
 
     const changeValue = (e) => {
@@ -16,20 +17,12 @@ const Contact = () => {
 
     const handlOnSubmit = (e) => {
         e.preventDefault();
-      
-        // const messageInfo = {
-        //     username : form.username,
-        //     email : form.email,
-        //     phone : form.phone,
-        //     message : form.message 
-        // };
 
         axios.post('http://localhost:5000/api/addMessage', form)
         .then(res => console.log(res.form));
         console.log(form);
 
         setForm({ username: '', email: '', phone: '', message: ''})
-        // console.log(`username is: ${username}, the email is : ${email}, phone : ${phone} and the message is ${message}`);
     }
 
     return (
