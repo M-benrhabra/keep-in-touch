@@ -65,10 +65,11 @@ exports.postresponse = async (req, res) => {
 // search Message
 exports.searchMessage = async (req, res) => {
 
-  const {email , date} = req.body
+  const {email , date} = req.body;
+  const formatDate = new Date(Date.parse(date))
 
   if(email && date) {
-    const allMessage = await Message.find({email:email, date:date})
+    const allMessage = await Message.find({email:email, date:formatDate})
     if(allMessage) return res.status(201).json(allMessage)
   } 
   else if (email){
@@ -76,7 +77,7 @@ exports.searchMessage = async (req, res) => {
     if(allMessage) return res.status(201).json(allMessage)
   }
   else if(date){
-    const allMessage = await Message.find({date:date})
+    const allMessage = await Message.find({date:formatDate})
     if(allMessage) return res.status(201).json(allMessage)
   }
 

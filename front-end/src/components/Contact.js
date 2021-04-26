@@ -4,7 +4,7 @@ import { FaMapMarkedAlt,FaPhoneAlt, FaMailBulk } from 'react-icons/fa';
 
 
 
-const Contact = () => {
+const Contact = (props) => {
     const initialState ={ username: '', email: '', phone: '', message: '' };
     const [form, setForm] = useState(initialState);
 
@@ -19,10 +19,16 @@ const Contact = () => {
         e.preventDefault();
 
         axios.post('http://localhost:5000/api/addMessage', form)
-        .then(res => console.log(res.form));
-        console.log(form);
+        // .then(
+        //     res => console.log(res.form)
+        //     );
+        // console.log(form);
+        if(form){
+            props.history.push('/dashboard')
+        }
+       
 
-        setForm({ username: '', email: '', phone: '', message: ''})
+        // setForm({ username: '', email: '', phone: '', message: ''})
     }
 
     return (
